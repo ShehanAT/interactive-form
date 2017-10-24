@@ -1,0 +1,81 @@
+div#form{
+        width: 300px;
+        float:left;
+    }
+    div#prices{
+        width: 300px;
+        float: right;
+    }
+    #images{
+        margin-left: 360px;
+        margin-right: 310px;
+        width: 300px;
+        height: 600px;
+        border: solid 1px red;
+        background-color: red;
+        position: absolute;
+        overflow: auto;
+    }
+    #favoriteclass{
+        color: red;
+    }
+    body{
+        background-color:grey;
+    }
+    .polaroid-images{
+    background: white;
+	display: inline;
+	float: left;
+	margin: 0 15px 30px;
+	padding: 10px 10px 25px;
+	text-align: center;
+	text-decoration: none;
+	-webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 0 4px 6px rgba(0,0,0,.3);
+	box-shadow: 0 4px 6px rgba(0,0,0,.3);
+	-webkit-transition: all .15s linear;
+	-moz-transition: all .15s linear;
+	transition: all .15s linear;
+	z-index:0;
+    }
+    .polaroid-images a:after {
+	color: #333;
+	font-size: 20px;
+	content: attr(title);
+	position: relative;
+	top:15px;
+}
+.polaroid-images img {
+	display: block;
+	width: inherit;
+}
+.polaroid-images
+{
+	-webkit-transform: rotate(4deg);
+	-moz-transform: rotate(4deg);
+	transform: rotate(4deg);
+    
+}
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+.header {
+    background-color: #9933cc;
+    color: #ffffff;
+    padding: 15px;
+}
+.menu h1 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu  {
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color :#33b5e5;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.menu li:hover {
+    background-color: #0099cc;
+}
