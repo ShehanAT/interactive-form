@@ -41,21 +41,21 @@ document.getElementById("register").addEventListener("click", function(event){
     if ($("#cvv").val() !== ''){
         $("#emptycvvnum").hide();
     }
-    $("#totalnum").text("0");
-    $('#all').prop("checked", false);
-    $('#js-frameworks').prop("checked", false);
-    $('#js-libs').prop('checked', false);
-    $('#express').prop('checked', false);
-    $('#node').prop('checked', false);
-    $('#build_tools').prop('checked', false);
-    $('#npm').prop('checked', false);
+   
     if ($("#design").val() == 'select_method'){
         $("#warningdesign").show();
     }
-    if ($("#payment").val() == 'select_method'){
-        $("#warningpayment").show();
-    }
+    
     if (checkallFields()){
+        $("#totalnum").text("0");
+        $('#all').prop("checked", false);
+        $('#js-frameworks').prop("checked", false);
+        $('#js-libs').prop('checked', false);
+        $('#express').prop('checked', false);
+        $('#node').prop('checked', false);
+        $('#build_tools').prop('checked', false);
+        $('#npm').prop('checked', false);
+        alert("Thank You, Form Has Been Submitted");
         location.reload();
     }
    
@@ -63,12 +63,13 @@ document.getElementById("register").addEventListener("click", function(event){
 function checkName(){
     var nameRegex = /([a-zA-Z]\w+?) ([a-zA-Z]\w+)|([a-zA-Z]\w+)/;
     
-    if ($("#name").val() == ""){
-            $("#emptyname").show();
-            $("#invalidname").hide();
+    if ($("#name").val() == ""){ 
+        $("#emptyname").show();
+        $("#invalidname").hide();
             
     }
     else if (nameRegex.test($("#name").val()) == false){
+        
         $("#invalidname").show();
         $("#emptyname").hide();
         
@@ -79,9 +80,13 @@ function checkName(){
         
     }  
 }
+document.getElementById('name').addEventListener('change', function(){
+    checkName();
+});
 document.getElementById('email').addEventListener('change', function(){
     checkEmail();
 });
+
 function checkEmail(){
     var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if ($("#email").val() == ""){
@@ -265,9 +270,11 @@ document.getElementById("cc-num").addEventListener('change', function(){
     var regex = /\b\d{13,16}\b/;
     if (regex.test($("#cc-num").val()) === false){
         $("#invalidcc-num").show();
-    }else{
+        $("#emptycc-num").hide();
+    }
+    if (regex.test($("#cc-num").val()) == true){
         $("#invalidcc-num").hide();
-        $("#")
+        $("#emptycc-num").hide();
     }
     
 });
@@ -275,17 +282,28 @@ document.getElementById("zip").addEventListener('change', function(){
     var regex = /\b\d{5}\b/;
     if (regex.test($("#zip").val()) === false){
         $("#invalidzipnum").show();
-    }else{
-        $("#invalidzipnum").hide();
+        $("#emptyzipnum").hide()
     }
+    if (regex.test($("#zip").val()) == true){
+        $("#invalidzipnum").hide();
+        $("#emptyzipnum").hide();
+    
+    }
+    
 })
 document.getElementById("cvv").addEventListener('change', function(){
     var regex = /\b\d{3}\b/;
+    console.log();
     if (regex.test($("#cvv").val()) === false){
         $("#invalidcvvnum").show();
-    }else{
-        $("#invalidcvvnum").hide();
+        $("#emptycvvnum").hide();
     }
+    if (regex.test($("#cvv").val()) === true){
+        $("#invalidcvvnum").hide();
+        $("#emptycvvnum").hide();
+        
+    }
+    
 })
 
 
@@ -296,29 +314,59 @@ function checkallFields(){
     
     if ($("#emptyname").is(":visible") || $("#name").val() == ""){
         checkName();
+        wrong = true;
     }
     if ($("#invalidname").is(":visible") || nameRegex.test($('#name').val()) !== false){
         checkName();
+        wrong = true;
     }
     if ($("#emptyemail").is(":visible") || $("#email").val() == ""){
        checkEmail();
+       wrong = true;
     }
     if ($("#invalidemail").is(":visible") || emailRegex.test($('#email').val()) !== false){
        checkEmail();
-    }
-    if (document.getElementById('emptyactivities').hasAttribute('checked')){
-        wrong = false;
-        $("#emptyactivities").hide()
+       wrong = true;
     }
     if (document.getElementById('emptyactivities').hasAttribute('checked') == false){
         wrong = true;
-        console.log("true");
-        
         $("#emptyactivities").show();
     }
+    if ($("#payment").val() == 'select_method'){
+        wrong = true;
+        $("#warningpayment").show();
+
+    }
+    if ($("#cc-num").val() == ''){
+        wrong = true;
+        $("#emptycc-num").show();
+    }
+    if ($("#zip").val() == ''){
+        wrong = true;
+        $("#emptyzipnum").show();
+    }
+    if ($("#cvv").val() == ''){
+        wrong = true;
+        $("#emptycvvnum").show();
+    }
+    if ($("#payment").val() == 'credit_card'){
+        console.log("passing1")
+        if ($("#cc-num").val() !== '' && $("#zip").val() !== '' && $("#cvv").val() !== '' && document.getElementById('emptyactivities').hasAttribute('checked') && $("#design").val() !== 'select_method' && $("#invalidcc-num").is(':visible') === false && $("#invalidzipnum").is(':visible') === false && $("#invalidcvvnum").is(':visible') === false){
+        wrong = false;
+        console.log("passing2")
+    }
+    }
     
+    if ($("#payment").val() == 'paypal'  && document.getElementById('emptyactivities').hasAttribute('checked') && $("#design").val() !== 'select_method'){
+        wrong = false;
+    }
+    if ($("#payment").val() == 'bitcoin' && document.getElementById('emptyactivities').hasAttribute('checked') && $("#design").val() !== 'select_method'){
+        wrong = false;
+    }
+
     if(wrong == false){
         return true;
     }
+
 }
 });
