@@ -1,23 +1,20 @@
-$(document).ready(function(){
-    $("#design").show();// hides all warning HTML tags on document ready 
-    $('#other_role').hide();
-    $("#warningdesign").hide();
-    $("#warningpayment").hide();
-    $("#invalidcc-num").hide();
-    $("#invalidzipnum").hide();
-    $("#invalidcvvnum").hide();
-    $("#colors-js-puns").hide();
-    $("#credit_card").hide();
-    $("#paypal").hide();
-    $("#bitcoin").hide();
-    $("#emptyname").hide();
-    $("#emptyemail").hide();
-    $("#invalidname").hide();
-    $("#invalidemail").hide();
-    $("#emptyactivities").hide();
-    $("#emptyzipnum").hide();
-    $("#emptycvvnum").hide();
-    $("#emptycc-num").hide(); 
+$(document).ready(function(){//dynamically creating all the error messages in HTML tags and adding them to the JavaScript to improve user experience
+    $('#name').before('<p hidden id="emptyname">Please Enter A Valid First Name And Last Name</p>');
+    $('#name').after('<p hidden id="invalidname" >Name Cannot Contain Letters At The Start</p>');
+    $('#email').before('<p hidden id="emptyemail" >Please Enter A Valid Email</p>');
+    $('#email').after('<p hidden id="invalidemail">Email Has To Contain @ and .com At The End</p>');
+    $('#design').parent().parent().after('<p hidden id="warningdesign" style="font-size:26px; color:red;">Please Select A Design</p>')
+    $($('.activities').children()[0]).after('<p id="emptyactivities" hidden>Please Select At Least One Activity</p>');
+    $('#credit_card').before('<p hidden id="warningpayment" style="color:red; font-size:26px;">Please Select An Option</p>');
+    $('#cc-num').before('<p hidden id="emptycc-num">Please Enter A Valid Credit Card Number</p>');
+    $('#cc-num').after('<p hidden id="invalidcc-num">Invalid credit card number, must be 13 to 16 digist long</p>')
+    $('#zip').before('<p hidden id="emptyzipnum">Please Enter A Valid Zip code');
+    $('#zip').after('<p hidden id="invalidzipnum">Invalid Zip code, must be 5 digits long</p>');
+    $('#cvv').before('<p hidden id="emptycvvnum">Please Enter A Valid CVV Number</p>');
+    $('#cvv').after('<p hidden id="invalidcvvnum">Invalid CVV number, must be 3 digits long</p>');
+    $('#other').parent().after('<input hidden id="other_role" placeholder="Your job role..."/>');
+    $('#credit_card').hide();
+    $('#colors-js-puns').hide();
 $("#register").on("click", function(event){
     event.preventDefault();//prevents browser from refreshing each time register button is clicked
     if (checkallFields()){//only if the checkallFields returns true will the form be submited
@@ -33,7 +30,7 @@ $("#register").on("click", function(event){
         $('#build_tools').prop('checked', false);
         $('#npm').prop('checked', false);
         alert("Thank You, Form Has Been Submitted");
-        location.reload();
+        location.reload();//refresh the page on register button click
     }
     })
 function checkName(){//function that checks if name field has a value, if the value is invalid and shows the appropriate warning.
@@ -73,6 +70,7 @@ function checkEmail(){//function that checks if email field has a value, if the 
         $("#emptyemail").hide();  
     }
 }
+
 //event listeners for activities checkboxes, shows total cost of activities in a h4 tag bellow the checkboxes
 $("#all").click(function(){
     $(this).data('clicked', true);

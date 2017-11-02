@@ -22,14 +22,11 @@
         <legend>Basic Info</legend>
         
         <label for="name">Name:</label>
-        <p id='emptyname'>Please Enter A Valid First Name And Last Name</p>
         <input type="text" id="name" name="Full name" autofocus>
-        <p id='invalidname'>Name Cannot Contain Letters At The Start</p>
+        
         
         <label for="mail">Email:</label>
-        <p id='emptyemail'>Please Enter A Valid Email Address</p>
         <input type="email" id="email" name="Email address">
-        <p id='invalidemail'>Email Has To Contain @ And .com At The End</p>
         
         <label for="title">Job Role</label>
         <select id="title" name="user_title">
@@ -40,7 +37,7 @@
           <option value="student">Student</option>
           <option id="other" value="other">Other</option>  
         </select> 
-        <input id='other_role' placeholder="Your job role...">          
+                 
       </fieldset>
       
       <fieldset class="shirt">
@@ -57,7 +54,7 @@
         </div>
 
         <div>
-          <p class='warning' id='warningdesign'>Please Select An Option</p>
+          
           <label for="design">
           <label for="">Design:</label>
           <select id="design">Design:
@@ -66,7 +63,6 @@
             <option value="heart_js">Theme - I &#9829; JS</option>
             </select>
           </label>
-          
         </div>
 
         <div id="colors-js-puns" >
@@ -85,7 +81,6 @@
 
       <fieldset class="activities">
         <legend>Register for Activities</legend>
-        <p id='emptyactivities'>Please Select At Least One Activity</p>
         <label><input type="checkbox" name="all" id="all" value="200"> Main Conference — $200</input></label>
         <label><input type="checkbox" name="js-frameworks" id="js-frameworks" value="100"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</input></label>
         <label><input type="checkbox" name="js-libs" id="js-libs" value="100"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</input></label>
@@ -98,7 +93,6 @@
   
       <fieldset>
         <legend>Payment Info</legend>
-        <p class='warning' id="warningpayment">Please Select An Option</p>
         <label for="payment" >I'm going to pay with:
           <select id="payment" name="user_payment" value="select_method">
           <option value="select_method" selected>Select Payment Method</option>
@@ -113,23 +107,17 @@
 
           <div class="col-6 col">
             <label for="cc-num">Card Number:</label>
-            <p id='emptycc-num'>Please Enter A Valid Credit Card Number</p>
         	  <input id="cc-num" name="Credit Card Number" type="text" >
-            <p id='invalidcc-num'>Invalid credit card number, must be 13 to 16 digits long</p>
           </div>
 
           <div class="col-3 col">
             <label for="zip">Zip Code:</label>
-            <p id='emptyzipnum'>Please Enter A Value Zip Code</p>
             <input id="zip" name="Zip Code" type="text">
-            <p id='invalidzipnum'>Invalid zip code, must be 5 digits long</p> 
           </div>
 
           <div class="col-3 col">
             <label for="cvv">CVV:</label>
-            <p id='emptycvvnum'>Please Enter A Valid Credit Card Number</p>
             <input id="cvv" name="CVV" type="text">
-            <p id='invalidcvvnum'>Invalid CVV number, must be 3 digits long</p> 
           </div>
 
           <label for="exp-month">Expiration Date:</label>
